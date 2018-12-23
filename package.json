@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "nodemon ./app/server",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch --mode=development"
   },
   "keywords": [],
   "author": "",
