@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon ./app/server"
+    "start-dev": "nodemon ./app/server",
+    "watch": "webpack --watch"
   },
   "keywords": [],
   "author": "",
