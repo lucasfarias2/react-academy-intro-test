@@ -2,6 +2,7 @@ require('@babel/register');
 require('@babel/polyfill');
 
 const express = require('express');
+const axios = require('axios');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
@@ -46,12 +47,22 @@ server.get('/items', (req, res) => {
 });
 
 server.get('/items/:id', (req, res) => {
-  res.send(
-    template(
-      'vip',
-      ReactDOMServer.renderToString(React.createElement(Vip, {}, null))
-    )
-  );
+  const itemId = req.params.id;
+  const props = {};
+  axios
+    .get(`http://localhost:3000/api/items/${itemId}`)
+    .then(response => {
+      props.itemData = response.data;
+      res.send(
+        template(
+          'vip',
+          ReactDOMServer.renderToString(
+            React.createElement(Vip, { ...props }, null)
+          )
+        )
+      );
+    })
+    .catch(e => console.error(e));
 });
 
 server.listen(port, () => console.log(`Server running on port ${port}!`));
