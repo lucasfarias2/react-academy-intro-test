@@ -1,4 +1,4 @@
-module.exports = (bundle) => `
+module.exports = (bundle, component) => `
   <!DOCTYPE html>
   <html>
     <head>
@@ -7,7 +7,7 @@ module.exports = (bundle) => `
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-      <div id="root"></div>
+      <div id="root">${component}</div>
       <script src="/${bundle}.js"></script>
     </body>
   </html>
