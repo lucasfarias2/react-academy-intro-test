@@ -38,12 +38,22 @@ server.get('/api/items/:id', (req, res) => {
 });
 
 server.get('/items', (req, res) => {
-  res.send(
-    template(
-      'search',
-      ReactDOMServer.renderToString(React.createElement(Search, {}, null))
-    )
-  );
+  const query = req.query.search;
+  const props = {};
+  axios
+    .get(`http://localhost:3000/api/items`, { params: { q: query } })
+    .then(response => {
+      props.items = response.data.items;
+      res.send(
+        template(
+          'search',
+          ReactDOMServer.renderToString(
+            React.createElement(Search, { ...props }, null)
+          )
+        )
+      );
+    })
+    .catch(e => console.error(e));
 });
 
 server.get('/items/:id', (req, res) => {
