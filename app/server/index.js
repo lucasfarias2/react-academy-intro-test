@@ -62,7 +62,6 @@ server.get('/items', (req, res) => {
 
 server.get('/items/:id', (req, res) => {
   const itemId = req.params.id;
-  console.log(itemId);
   const props = {};
   axios
     .get(`http://localhost:3000/api/items/${itemId}`)
