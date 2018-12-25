@@ -48,6 +48,7 @@ server.get('/items', (req, res) => {
     .get(`http://localhost:3000/api/items`, { params: { q: query } })
     .then(response => {
       props.items = response.data.items;
+      props.breadcrumb = response.data.breadcrumb;
       res.send(
         template(
           'search',

@@ -11,6 +11,13 @@ const getItemListing = async query => {
         params: { q: query, limit: 4 }
       }
     );
+
+    const breadcrumbResponse = await axios.get(
+      `http://api.mercadolibre.com/categories/${
+        response.data.results[0].category_id
+      }`
+    );
+
     const items = [];
     response.data.results.forEach(item => {
       const currentItem = {
@@ -23,13 +30,14 @@ const getItemListing = async query => {
         },
         picture: item.thumbnail,
         condition: item.condition,
-        free_shipping: item.shipping.free_shipping
+        free_shipping: item.shipping.free_shipping,
       };
       items.push(currentItem);
     });
     const listingDto = {
       author: { name: 'Lucas', lastname: 'Farías' },
       categories: response.data.results.map(item => item.category_id),
+      breadcrumb: breadcrumbResponse.data.path_from_root,
       items
     };
     return listingDto;
@@ -44,6 +52,10 @@ const getItem = async id => {
     const descriptionResponse = await axios.get(
       `http://api.mercadolibre.com/items/${id}/description`
     );
+    const breadcrumbResponse = await axios.get(
+      `http://api.mercadolibre.com/categories/${response.data.category_id}`
+    );
+
     const itemDto = {
       author: { name: 'Lucas', lastname: 'Farías' },
       item: {
@@ -60,7 +72,8 @@ const getItem = async id => {
         sold_quantity: response.data.sold_quantity,
         description: descriptionResponse
           ? descriptionResponse.data.plain_text
-          : ''
+          : '',
+        breadcrumb: breadcrumbResponse.data.path_from_root
       }
     };
     return itemDto;

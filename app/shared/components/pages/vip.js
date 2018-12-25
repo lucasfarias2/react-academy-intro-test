@@ -16,6 +16,7 @@ const Vip = props => {
       <Layout />
       {item && (
         <div className="item">
+        <div>{item.breadcrumb.map(cat => `${cat.name} `)}</div>
           <div className="item-container">
             <div className="item-container__left">
               <div className="item-container__left__picture">

@@ -4,7 +4,7 @@ const Script = require('../helpers/script');
 const Layout = require('../commons/layout');
 
 const Search = props => {
-  const serializeProps = { items: props.items };
+  const serializeProps = { breadcrumb: props.breadcrumb, items: props.items };
   return (
     <div>
       <Script>
@@ -15,6 +15,7 @@ const Search = props => {
       <Layout />
       <div className="search">
         <div className="item-list">
+          <div>{props.breadcrumb.map(cat => `${cat.name} `)}</div>
           <section className="item-list-right">
             {props.items &&
               props.items.map(item => (
