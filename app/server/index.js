@@ -7,6 +7,7 @@ const axios = require('axios');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
+const favicon = require('serve-favicon');
 const { getItem, getItemListing } = require('./services/item-service');
 const template = require('./template');
 const Home = require('../shared/components/pages/home');
@@ -16,6 +17,8 @@ const server = express();
 const port = 3000;
 
 server.use('/', express.static(path.join(__dirname, '../../build')));
+server.use('/static', express.static(path.join(__dirname, '../static')));
+server.use(favicon(path.join(__dirname, '../static', 'favicon.ico')));
 
 server.get('/', (req, res) => {
   res.send(
@@ -59,6 +62,7 @@ server.get('/items', (req, res) => {
 
 server.get('/items/:id', (req, res) => {
   const itemId = req.params.id;
+  console.log(itemId);
   const props = {};
   axios
     .get(`http://localhost:3000/api/items/${itemId}`)

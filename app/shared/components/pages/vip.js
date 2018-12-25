@@ -11,9 +11,12 @@ const Vip = props => {
           isJSON: true
         })};`}
       </Script>
-      <h2>{props.itemData.item.title}</h2>
-      <img src={props.itemData.item.picture} alt="" />
-      <p>Esta es la vista de la vip</p>
+      {props.itemData && (
+        <div>
+          <h2>{props.itemData.item.title}</h2>
+          <img src={props.itemData.item.picture} alt="" />
+        </div>
+      )}
     </div>
   );
 };

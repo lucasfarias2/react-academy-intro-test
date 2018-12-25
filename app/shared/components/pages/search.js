@@ -11,12 +11,12 @@ const Search = props => {
           isJSON: true
         })};`}
       </Script>
-      <h2>Search page</h2>
-
-      {props.items.map(item => (
-        <h4 key={item.id}>{item.title}</h4>
-      ))}
-      <p>Esta es la vista de la search</p>
+      {props.items &&
+        props.items.map(item => (
+          <h4 key={item.id}>
+            <a href={`/items/${item.id}`}>{item.title}</a>
+          </h4>
+        ))}
     </div>
   );
 };
