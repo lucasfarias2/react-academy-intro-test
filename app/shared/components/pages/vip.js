@@ -2,6 +2,7 @@ const React = require('react');
 const serialize = require('serialize-javascript');
 const Script = require('../helpers/script');
 const Layout = require('../commons/layout');
+const SvgChevron = require('../commons/svg-chevron');
 
 const Vip = props => {
   const serializeProps = { itemData: props.itemData };
@@ -16,7 +17,18 @@ const Vip = props => {
       <Layout />
       {item && (
         <div className="item">
-        <div>{item.breadcrumb.map(cat => `${cat.name} `)}</div>
+          <div className="item-breadcrumb">
+            <div className="item-breadcrumb__path">
+              <ol>
+                {item.breadcrumb.map(breadcrumbItem => (
+                  <li key={breadcrumbItem.id}>
+                    {breadcrumbItem.name}
+                    <SvgChevron />
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
           <div className="item-container">
             <div className="item-container__left">
               <div className="item-container__left__picture">

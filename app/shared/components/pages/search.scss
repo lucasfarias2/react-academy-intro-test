@@ -6,7 +6,36 @@
 
   .item-list {
     padding: 24px 0;
-    
+
+    &-breadcrumb__path {
+      ol {
+        margin: 0;
+        padding: 0 0 10px;
+        list-style: none;
+
+        li {
+          display: inline;
+          font-size: 14px;
+          font-weight: 400;
+          margin: 0 0 2px;
+          line-height: 1.45;
+          .chevron {
+            width: 9px;
+            height: 9px;
+            display: none;
+            padding: 0 4px;
+            opacity: 0.5;
+          }
+        }
+
+        li:not(:last-child) {
+          .chevron {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
     &-item {
       background-color: #fff;
       border-top-left-radius: 4px;

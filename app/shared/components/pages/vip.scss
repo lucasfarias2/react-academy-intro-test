@@ -5,6 +5,41 @@
   color: #666;
   padding: 24px 0;
 
+  &-breadcrumb {
+    padding-bottom: 14px;
+
+    &__path {
+      display: inline-block;
+
+      ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+          display: inline;
+          font-size: 14px;
+          font-weight: 400;
+          margin: 0 0 2px;
+          line-height: 1.45;
+          .chevron {
+            width: 9px;
+            height: 9px;
+            display: none;
+            padding: 0 6px;
+            opacity: 0.5;
+          }
+        }
+
+        li:not(:last-child) {
+          .chevron {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
   &-container {
     background-color: #fff;
     border-radius: 4px;
