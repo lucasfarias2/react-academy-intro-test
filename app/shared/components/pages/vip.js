@@ -19,13 +19,13 @@ const Vip = props => {
           <div className="item-container">
             <div className="item-container__left">
               <div className="item-container__left__picture">
-                <img src={``} alt={item.title} />
+                <img src={item.picture} alt={item.title} />
               </div>
               <div className="item-container__left__description">
                 <h2 className="item-container__left__description__title">
                   Descripción
                 </h2>
-                <p>{}</p>
+                <p>{item.description}</p>
               </div>
             </div>
             <div className="item-container__details">

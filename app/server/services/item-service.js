@@ -41,6 +41,9 @@ const getItemListing = async query => {
 const getItem = async id => {
   try {
     const response = await axios.get(`http://api.mercadolibre.com/items/${id}`);
+    const descriptionResponse = await axios.get(
+      `http://api.mercadolibre.com/items/${id}/description`
+    );
     const itemDto = {
       author: { name: 'Lucas', lastname: 'Farías' },
       item: {
@@ -51,11 +54,13 @@ const getItem = async id => {
           amount: Math.trunc(response.data.price),
           decimals: getDecimalsFromPrice(response.data.price)
         },
-        picture: response.data.thumbnail,
+        picture: response.data.pictures[0].secure_url,
         condition: response.data.condition,
         free_shipping: response.data.shipping.free_shipping,
         sold_quantity: response.data.sold_quantity,
-        descripcion: 'Descripción'
+        description: descriptionResponse
+          ? descriptionResponse.data.plain_text
+          : ''
       }
     };
     return itemDto;
