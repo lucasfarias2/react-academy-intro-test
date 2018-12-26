@@ -13,6 +13,7 @@ const template = require('./template');
 const Home = require('../shared/components/pages/home');
 const Search = require('../shared/components/pages/search');
 const Vip = require('../shared/components/pages/vip');
+
 const server = express();
 const port = 3000;
 
@@ -24,8 +25,8 @@ server.get('/', (req, res) => {
   res.send(
     template(
       'home',
-      ReactDOMServer.renderToString(React.createElement(Home, {}, null))
-    )
+      ReactDOMServer.renderToString(React.createElement(Home, {}, null)),
+    ),
   );
 });
 
