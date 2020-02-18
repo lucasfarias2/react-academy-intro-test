@@ -33,7 +33,6 @@
     "express-device": "^0.4.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
-    "package.json": "^2.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-declarative-head": "^1.0.5",
